@@ -13,12 +13,14 @@ public class EventLogStream {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.enableCheckpointing(1000);
+        env.getCheckpointConfig().setCheckpointStorage("file:///tmp/checkpoint-dir");
         DataStream<GenericRecord> eventLogDataStream = env.addSource(new EventLogSource());
         final FileSink<GenericRecord> psink = FileSink
                 .forBulkFormat(new Path("file:///tmp/something"), AvroParquetWriters.forGenericRecord(EventLog.getClassSchema()))
                 .withRollingPolicy(OnCheckpointRollingPolicy.build())
                 .build();
         eventLogDataStream.sinkTo(psink);
+
         env.execute("File writer");
     }
 }
