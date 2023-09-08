@@ -23,7 +23,6 @@ public class EventLogSource extends RichParallelSourceFunction <GenericRecord> {
                         .build();
                 sourceContext.collect(eventLog);
             }
-            log.info("producing stuff");
             Thread.sleep(100);
         }
     }

@@ -20,7 +20,6 @@ public class EventLogStream {
                 .withRollingPolicy(OnCheckpointRollingPolicy.build())
                 .build();
         eventLogDataStream.sinkTo(psink);
-
         env.execute("File writer");
     }
 }
