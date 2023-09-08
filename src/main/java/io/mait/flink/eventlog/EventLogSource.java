@@ -1,10 +1,11 @@
 package io.mait.flink.eventlog;
 
 import io.mait.flink.avro.EventLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
-
 import java.util.UUID;
+@Slf4j
 public class EventLogSource extends RichParallelSourceFunction <GenericRecord> {
 
     Boolean running;
@@ -14,8 +15,6 @@ public class EventLogSource extends RichParallelSourceFunction <GenericRecord> {
 
     @Override
     public void run(SourceContext<GenericRecord> sourceContext) throws Exception {
-
-        Long offset = 0l;
         while(running) {
             for(int i=0; i< 100; i++) {
                 EventLog eventLog = EventLog.newBuilder()
@@ -24,6 +23,7 @@ public class EventLogSource extends RichParallelSourceFunction <GenericRecord> {
                         .build();
                 sourceContext.collect(eventLog);
             }
+            log.info("producing stuff");
             Thread.sleep(100);
         }
     }
