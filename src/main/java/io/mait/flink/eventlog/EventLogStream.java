@@ -18,11 +18,10 @@ public class EventLogStream {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         env.enableCheckpointing(1000);
-        env.getCheckpointConfig().setCheckpointStorage("file:///tmp/checkpoint-dir");
-        env.getCheckpointConfig();
+        env.getCheckpointConfig().setCheckpointStorage("s3://flink/checkpoint-dir");
         DataStream<GenericRecord> eventLogDataStream = env.addSource(new EventLogSource());
         final FileSink<GenericRecord> psink = FileSink
-                .forBulkFormat(new Path("file:///tmp/something"), AvroParquetWriters.forGenericRecord(EventLog.getClassSchema()))
+                .forBulkFormat(new Path("s3://flink/something"), AvroParquetWriters.forGenericRecord(EventLog.getClassSchema()))
                 .withRollingPolicy(OnCheckpointRollingPolicy.build())
                 .build();
         UUID uuid = UUID.randomUUID();
