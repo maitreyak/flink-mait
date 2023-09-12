@@ -1,7 +1,6 @@
 package io.mait.flink.eventlog;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.avro.generic.GenericRecord;
 import org.apache.flink.api.common.JobID;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
@@ -12,7 +11,6 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.queryablestate.client.QueryableStateClient;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class QueryEvent {
