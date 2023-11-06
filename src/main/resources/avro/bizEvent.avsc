@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "BizEvent",
+  "namespace": "io.mait.flink.avro",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "logical-type": "uuid"
+    },
+    {
+      "name": "eventTimestamp",
+      "type": "long",
+      "doc": "eventTimestamp"
+    }
+  ],
+  "doc:": "BizEvent"
+}
