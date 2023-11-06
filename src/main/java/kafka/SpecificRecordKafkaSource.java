@@ -2,24 +2,17 @@ package kafka;
 
 import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
 import io.confluent.kafka.schemaregistry.client.SchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.mait.flink.avro.BizEvent;
-import io.mait.flink.avro.EventLog;
-import io.mait.flink.eventlog.EventLogSource;
 import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
-import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-public class SimpleKafkaSource {
+public class SpecificRecordKafkaSource {
         final static SchemaRegistryClient schemaRegistryClient = new CachedSchemaRegistryClient("http://127.0.0.1:8081", 10);
         final static KafkaAvroSerializer kafkaAvroSerializer = new KafkaAvroSerializer(schemaRegistryClient);
 
