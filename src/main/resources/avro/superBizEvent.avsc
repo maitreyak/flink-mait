@@ -1,0 +1,28 @@
+{
+  "type": "record",
+  "name": "superBizEvent",
+  "namespace": "io.mait.flink.avro",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "logical-type": "uuid"
+    },
+    {
+      "name": "eventEventId",
+      "type": "string",
+      "logical-type": "uuid"
+    },
+    {
+      "name": "eventTimestamp",
+      "type": "long",
+      "doc": "eventTimestamp"
+    },
+    {
+      "name": "eventPublishTimestamp",
+      "type": "long",
+      "doc": "eventTimestamp"
+    }
+  ],
+  "doc:": "superBizEvent"
+}
