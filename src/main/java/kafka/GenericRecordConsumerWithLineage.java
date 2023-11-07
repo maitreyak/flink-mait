@@ -28,8 +28,10 @@ public class GenericRecordConsumerWithLineage {
     final static SchemaRegistryClient schemaRegistryClient = new CachedSchemaRegistryClient("http://127.0.0.1:8081", 10);
 
     public static void main(String[] args) throws Exception {
+        //Set environment variable
+        //OPENLINEAGE_CONFIG=/src/main/resources/openlineage.yml
         schemaRegistryClient.register("sink-biz-value", BizEvent.SCHEMA$);
-        
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         Configuration configuration = (Configuration) env.getConfiguration();
         configuration.setString("rest.address", "localhost");
@@ -53,11 +55,7 @@ public class GenericRecordConsumerWithLineage {
                         .setTopic("sink-biz")
                         .build()
                 ).build();
-
-
-
         env.enableCheckpointing(1000);
-
         DataStreamSource<GenericRecord> dataStream = env.fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "kafkaSource");
         dataStream.sinkTo(kafkaSink);
         JobListener jobListener = OpenLineageFlinkJobListener.builder()
