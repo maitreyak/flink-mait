@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "superBizEvent",
+  "name": "SuperBizEvent",
   "namespace": "io.mait.flink.avro",
   "fields": [
     {
