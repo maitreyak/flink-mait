@@ -137,6 +137,16 @@
             <artifactId>kafka-avro-serializer</artifactId>
             <version>7.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-avro-confluent-registry</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.openlineage</groupId>
+            <artifactId>openlineage-flink</artifactId>
+            <version>1.5.0</version>
+        </dependency>
     </dependencies>
 
     <build>
